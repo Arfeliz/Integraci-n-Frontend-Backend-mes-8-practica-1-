@@ -35,15 +35,15 @@ function App() {
     return <div>Cargando...</div>;
   }
 
-  const handleAddItem = () => {
+  const handleAddItem = (newItemName) => {
     try {
-      if (inputValue.trim() !== '') {
+      if (newItemName.trim() !== '') {
         fetch('http://localhost:3000/items', {
           method: 'POST',
           headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ name: inputValue })
+        body: JSON.stringify({ name: newItemName })
       })
         .then(response => response.json())
         .then(data => {
@@ -73,7 +73,7 @@ function App() {
   return (
     <>
       <h1 className='list-title'>Lista de cocina</h1>
-      <AddItem onAdd={handleAddItem} />
+      <AddItem onAdd={handleAddItem}  />
       
       <ul className="item-list">
         {items.map(item => (
